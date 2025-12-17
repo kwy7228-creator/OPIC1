@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AL Spoken English – Day 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:system-ui;background:#f4f4f4;margin:0;padding:16px}
+.app{max-width:900px;margin:auto;background:#fff;padding:16px;border-radius:10px}
+h1{text-align:center}
+.card{border:1px solid #ddd;border-radius:8px;padding:12px;margin-top:14px;background:#fafafa}
+.phrase{font-size:18px;font-weight:700}
+.muted{color:#666;font-size:14px}
+button{padding:6px 10px;margin-top:6px}
+.options div{border:1px solid #ccc;padding:8px;margin-top:6px;border-radius:6px;cursor:pointer}
+.options div:hover{background:#eef2ff}
+.story{white-space:pre-wrap;line-height:1.6}
+.hidden{display:none}
+textarea{width:100%;min-height:80px}
+</style>
+</head>
+<body>
+
+<div class="app">
+<h1>AL Spoken English – Day 1</h1>
+
+<!-- 1. EXPRESSIONS -->
+<div class="card">
+<h3>1️⃣ Today’s Expressions (5)</h3>
+
+<div class="phrase">1. I didn’t mean to ~</div>
+<div class="muted">~하려던 건 아니야 (변명/완화)</div>
+<div class="muted">Situation: 상대 기분 상하게 했을 때</div>
+<hr>
+
+<div class="phrase">2. It caught me off guard.</div>
+<div class="muted">완전 예상 못 했어</div>
+<div class="muted">Situation: 갑작스러운 상황</div>
+<hr>
+
+<div class="phrase">3. Long story short, ~</div>
+<div class="muted">요약하면 말이야</div>
+<div class="muted">Situation: 길어진 설명을 정리할 때</div>
+<hr>
+
+<div class="phrase">4. I wasn’t really in the mood.</div>
+<div class="muted">그럴 기분이 아니었어</div>
+<div class="muted">Situation: 거절·소극적 반응</div>
+<hr>
+
+<div class="phrase">5. It worked out in the end.</div>
+<div class="muted">결국엔 잘 풀렸어</div>
+<div class="muted">Situation: 결과 요약</div>
+
+</div>
+
+<!-- 2. STORY AUDIO -->
+<div class="card">
+<h3>2️⃣ Long Story (Listen First)</h3>
+<button onclick="playStory()">▶ Play Audio Book</button>
+<button onclick="toggleScript()">Show / Hide Script</button>
+<div id="storyText" class="story hidden"></div>
+</div>
+
+<!-- 3. STORY QUIZ -->
+<div class="card">
+<h3>3️⃣ Story Understanding</h3>
+
+<div>Why did the speaker feel uncomfortable at first?</div>
+<textarea placeholder="Answer in English"></textarea>
+<hr>
+
+<div>What unexpected thing happened?</div>
+<textarea placeholder="Answer in English"></textarea>
+</div>
+
+<!-- 4. EXPRESSION PRACTICE -->
+<div class="card">
+<h3>4️⃣ Expression in Context</h3>
+
+<div>Someone says: “Sorry if that sounded rude.”</div>
+<div class="options">
+  <div onclick="alert('오답')">It caught me off guard.</div>
+  <div onclick="alert('정답')">I didn’t mean to.</div>
+  <div onclick="alert('오답')">It worked out in the end.</div>
+</div>
+<hr>
+
+<div>You want to summarize a long explanation.</div>
+<div class="options">
+  <div onclick="alert('오답')">I wasn’t in the mood.</div>
+  <div onclick="alert('정답')">Long story short,</div>
+  <div onclick="alert('오답')">It caught me off guard.</div>
+</div>
+
+</div>
+
+<!-- 5. SPEAKING -->
+<div class="card">
+<h3>5️⃣ Speak It Out (AL Style)</h3>
+
+<div>Have you ever been caught off guard at work or in daily life? What happened?</div>
+<textarea placeholder="Speak or write your answer"></textarea>
+<hr>
+
+<div>Think of a time something didn’t go as planned but worked out in the end.</div>
+<textarea placeholder="Speak or write your answer"></textarea>
+
+</div>
+
+</div>
+
+<script>
+const story = `
+I met a friend last weekend, and honestly, I wasn’t really in the mood at first.
+I had a long week, and the meeting caught me off guard.
+At one point, I said something awkward, but I didn’t mean to sound rude.
+We talked for a while, and long story short, we cleared things up.
+It wasn’t perfect, but it worked out in the end.
+`;
+
+function playStory(){
+  const u = new SpeechSynthesisUtterance(story);
+  u.lang = "en-US";
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function toggleScript(){
+  const el = document.getElementById("storyText");
+  el.classList.toggle("hidden");
+  el.textContent = story;
+}
+</script>
+
+</body>
+</html>
